@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+
+  emp_track_db:
+    image: mariadb:11.6.2-ubi9
+    container_name: emp_track_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: emp_track
+      MYSQL_USER: employeeManager
+      MYSQL_PASSWORD: Almafa1234
+    ports:
+      - "3306:3306"
+    networks:
+      - employee-network
+    restart: always
+
+#  emp-track-app:
+#    build:
+#      context: ../
+#      dockerfile: Dockerfile
+#    container_name: emp-track-app
+#    command: mvn clean install -T 2 -DskipTests
+#    working_dir: /app
+#    volumes:
+#      - ./application.yaml:/app/application.yaml
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - employee-network
+#    depends_on:
+#      - emp_track_db
+#    entrypoint: ['./wait-for-it.sh', '-t', '120', 'emp_track_db:3306', '--', 'java', '-jar', '/app/app.jar', '--spring.config.location=/app/application.yaml']
+
+#  nosql-emp-track-app:
+#    build:
+#      context: ../
+#      dockerfile: Dockerfile
+#    container_name: nosql-emp-track-app
+#    command: mvn clean install -T 2 -DskipTests
+#    working_dir: /app
+#    volumes:
+#      - ./application-mongo.yaml:/app/application.yaml
+#    ports:
+#      - "8081:8080"
+#    networks:
+#      - employee-network
+#    depends_on:
+#      - emp_track_db
+#    entrypoint: ['./wait-for-it.sh', '-t', '120', 'emp_track_db:3306', '--', 'java', '-jar', '/app/app.jar', '--spring.config.location=/app/application.yaml']
+
+networks:
+  employee-network:
+    driver: bridge
