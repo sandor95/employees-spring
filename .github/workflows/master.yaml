@@ -39,7 +39,7 @@ jobs:
       - name: Unit test
         run: mvn -B clean test -T 2
 
-  integration-test:
+  full-install:
     needs: compile
     runs-on: ubuntu-latest
 
