@@ -3,7 +3,7 @@ spring:
     name: employees-spring
 
   datasource:
-    url: jdbc:h2:mem:sms_notification_memory_db;Mode=MariaDB
+    url: jdbc:h2:mem:relational_emp_track;Mode=MariaDB
     username: sa
     password: password
     driver-class-name: org.h2.Driver

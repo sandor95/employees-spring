@@ -4,104 +4,108 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.0</version>
-        <relativePath/>
+        <groupId>training.microservices</groupId>
+        <artifactId>employees-spring</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>training.microservices</groupId>
-    <artifactId>employees-spring</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>employees-spring</name>
+    <artifactId>app-wrapper</artifactId>
+    <name>.... app-wrapper ....</name>
     <packaging>pom</packaging>
-    <description>Training project for Spring Boot Microservices with Docker</description>
+    <description>This module is a wrapper module for applications</description>
 
     <modules>
-        <module>business-logic</module>
-        <module>persistence-wrapper</module>
-        <module>app-wrapper</module>
+        <module>emp-track-nosql</module>
+        <module>emp-track-relational</module>
     </modules>
 
     <properties>
-        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-
-        <version.spring-boot>3.4.0</version.spring-boot>
-        <version.mapstruct>1.6.3</version.mapstruct>
-        <version.jackson>2.18.1</version.jackson>
-        <version.jackson-nullable>0.2.6</version.jackson-nullable>
-        <version.lombok-mapstruct-bind>0.2.0</version.lombok-mapstruct-bind>
-        <version.openapi>2.2.22</version.openapi>
-        <version.openapi.generator>7.10.0</version.openapi.generator>
-        <version.lombok>1.18.36</version.lombok>
-        <version.validation-api>3.1.0</version.validation-api>
-        <version.hibernate-validator>8.0.1.Final</version.hibernate-validator>
-        <version.commons-lang3>3.17.0</version.commons-lang3>
     </properties>
 
-    <dependencyManagement>
+    <dependencies>
 
-        <dependencies>
+        <!-- Spring dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${version.spring-boot}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+            <version>${version.spring-boot}</version>
+        </dependency>
 
-            <!-- Spring dependencies -->
+        <!-- Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+        </dependency>
 
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${version.jackson}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openapitools</groupId>
-                <artifactId>jackson-databind-nullable</artifactId>
-                <version>${version.jackson-nullable}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-annotations-jakarta</artifactId>
-                <version>${version.openapi}</version>
-            </dependency>
+        <!-- OpenAPI -->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations-jakarta</artifactId>
+        </dependency>
 
-            <!-- Lombok -->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <scope>compile</scope>
-                <version>${version.lombok}</version>
-            </dependency>
+        <!-- Flyway -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
 
-            <!-- Bean validation -->
-            <dependency>
-                <groupId>jakarta.validation</groupId>
-                <artifactId>jakarta.validation-api</artifactId>
-                <version>${version.validation-api}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.validator</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${version.hibernate-validator}</version>
-            </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
 
-            <!-- StringUtils -->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${version.commons-lang3}</version>
-            </dependency>
+        <!-- Bean validation -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
 
-            <!-- Mapstruct -->
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-                <version>${version.mapstruct}</version>
-            </dependency>
+        <!-- StringUtils -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <!-- Mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+        </dependency>
 
 
-        </dependencies>
+        <!-- Test dependencies START -->
 
-    </dependencyManagement>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${version.spring-boot}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <pluginManagement>
@@ -176,6 +180,7 @@
                         </excludes>
                     </configuration>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
