@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import training.microservices.employees.openapi.model.EmployeeApiDto;
 import training.microservices.employees.openapi.model.ProblemDetail;
 import training.microservices.employees.service.EmployeeService;
 
+@Slf4j
 @RestController
 @RequestMapping
 @RequiredArgsConstructor(onConstructor_ = @__(@Autowired))
@@ -70,7 +72,14 @@ public class EmployeeController implements EmployeesApi {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ProblemDetail> handleException(Exception e) {
-        HttpStatus status = e instanceof IllegalArgumentException ? HttpStatus.BAD_REQUEST : HttpStatus.INTERNAL_SERVER_ERROR;
+        HttpStatus status;
+        if (e instanceof IllegalArgumentException) {
+            log.warn("Validation error occurred", e);
+            status = HttpStatus.BAD_REQUEST;
+        } else {
+            log.error("Unhandled error occurred", e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
         ProblemDetail problemDetail = new ProblemDetail();
         problemDetail.setTitle("error_occurred");
         problemDetail.setDetail(e.getMessage());

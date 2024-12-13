@@ -18,8 +18,3 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
-
-logging:
-  level:
-    org.apache.cxf: debug
-    org.apache.tomcat: debug

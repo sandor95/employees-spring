@@ -50,17 +50,17 @@ services:
 #      - emp_track_db
 #    entrypoint: ['./wait-for-it.sh', '-t', '120', 'emp_track_db:3306', '--', 'java', '-jar', '/app/app.jar', '--spring.config.location=/app/application.yaml']
 #
-#  mongo:
-#    image: mongo:latest
-#    container_name: mongo-container
-#    ports:
-#      - "27017:27017"
-#    environment:
-#      MONGO_INITDB_ROOT_USERNAME: testuser
-#      MONGO_INITDB_ROOT_PASSWORD: almafa1234
-#      MONGO_INITDB_DATABASE: emptrackdb
-#    networks:
-#      - employee-network
+  mongo:
+    image: mongo:latest
+    container_name: mongo-container
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: testuser
+      MONGO_INITDB_ROOT_PASSWORD: almafa1234
+      MONGO_INITDB_DATABASE: emptrackdb
+    networks:
+      - employee-network
 
 networks:
   employee-network:
