@@ -6,7 +6,7 @@ RUN mvn clean install -T 2 -DskipTests
 FROM eclipse-temurin:21-ubi9-minimal
 WORKDIR /app
 
-COPY --from=builder /app/app-wrapper/emp-track-nosql/target/*.jar /app/app.jar
+COPY --from=builder /app/apps/emp-track-nosql/target/*.jar /app/app.jar
 
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh .
 RUN chmod +x ./wait-for-it.sh

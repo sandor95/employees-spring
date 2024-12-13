@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://emptrack.microservices.training.com/employees"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        name="EmployeeManagementService"
+        targetNamespace="http://emptrack.microservices.training.com/employees">
+
+    <!-- Import the XSD for complex types -->
+    <wsdl:types>
+        <xs:schema>
+            <xs:import namespace="http://emptrack.microservices.training.com/employees" schemaLocation="emptrackV1_pojos.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+
+    <!-- Messages -->
+    <wsdl:message name="ListEmployeesRequest"/>
+    <wsdl:message name="ListEmployeesResponse">
+        <wsdl:part name="parameters" element="tns:ListEmployeesResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="CreateEmployeeRequest">
+        <wsdl:part name="parameters" element="tns:CreateEmployeeRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateEmployeeResponse">
+        <wsdl:part name="parameters" element="tns:CreateEmployeeResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="GetEmployeeRequest">
+        <wsdl:part name="parameters" element="tns:GetEmployeeRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetEmployeeResponse">
+        <wsdl:part name="parameters" element="tns:GetEmployeeResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="UpdateEmployeeRequest">
+        <wsdl:part name="parameters" element="tns:UpdateEmployeeRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateEmployeeResponse">
+        <wsdl:part name="parameters" element="tns:UpdateEmployeeResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="DeleteEmployeeRequest">
+        <wsdl:part name="parameters" element="tns:DeleteEmployeeRequest"/>
+    </wsdl:message>
+    <wsdl:message name="DeleteEmployeeResponse">
+        <wsdl:part name="parameters" element="tns:DeleteEmployeeResponse"/>
+    </wsdl:message>
+
+    <!-- Port Type -->
+    <wsdl:portType name="EmployeeManagementPortType">
+        <wsdl:operation name="ListEmployees">
+            <wsdl:input message="tns:ListEmployeesRequest"/>
+            <wsdl:output message="tns:ListEmployeesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="CreateEmployee">
+            <wsdl:input message="tns:CreateEmployeeRequest"/>
+            <wsdl:output message="tns:CreateEmployeeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetEmployee">
+            <wsdl:input message="tns:GetEmployeeRequest"/>
+            <wsdl:output message="tns:GetEmployeeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateEmployee">
+            <wsdl:input message="tns:UpdateEmployeeRequest"/>
+            <wsdl:output message="tns:UpdateEmployeeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="DeleteEmployee">
+            <wsdl:input message="tns:DeleteEmployeeRequest"/>
+            <wsdl:output message="tns:DeleteEmployeeResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- Binding -->
+    <wsdl:binding name="EmployeeManagementBinding" type="tns:EmployeeManagementPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ListEmployees">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateEmployee">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetEmployee">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateEmployee">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="DeleteEmployee">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- Service -->
+    <wsdl:service name="EmployeeManagementService">
+        <wsdl:port name="EmployeeManagementPort" binding="tns:EmployeeManagementBinding">
+            <soap:address location="http://emptrack.microservices.training.com/employees"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

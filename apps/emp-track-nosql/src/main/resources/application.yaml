@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://testuser:almafa1234@localhost:27017/emptrackdb?authSource=admin

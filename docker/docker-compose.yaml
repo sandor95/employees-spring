@@ -16,51 +16,51 @@ services:
       - employee-network
     restart: always
 
-  emp-track-app:
-    build:
-      context: ../
-      dockerfile: Dockerfile
-    container_name: emp-track-app
-    command: mvn clean install -T 2 -DskipTests
-    working_dir: /app
-    volumes:
-      - ./application.yaml:/app/application.yaml
-    ports:
-      - "8080:8080"
-    networks:
-      - employee-network
-    depends_on:
-      - emp_track_db
-    entrypoint: ['./wait-for-it.sh', '-t', '120', 'emp_track_db:3306', '--', 'java', '-jar', '/app/app.jar', '--spring.config.location=/app/application.yaml']
+#  emp-track-app:
+#    build:
+#      context: ../
+#      dockerfile: Dockerfile
+#    container_name: emp-track-app
+#    command: mvn clean install -T 2 -DskipTests
+#    working_dir: /app
+#    volumes:
+#      - ./application.yaml:/app/application.yaml
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - employee-network
+#    depends_on:
+#      - emp_track_db
+#    entrypoint: ['./wait-for-it.sh', '-t', '120', 'emp_track_db:3306', '--', 'java', '-jar', '/app/app.jar', '--spring.config.location=/app/application.yaml']
 
-  nosql-emp-track-app:
-    build:
-      context: ../
-      dockerfile: Dockerfile-mongo
-    container_name: nosql-emp-track-app
-    command: mvn clean install -T 2 -DskipTests
-    working_dir: /app
-    volumes:
-      - ./application-mongo.yaml:/app/application.yaml
-    ports:
-      - "8081:8080"
-    networks:
-      - employee-network
-    depends_on:
-      - emp_track_db
-    entrypoint: ['./wait-for-it.sh', '-t', '120', 'emp_track_db:3306', '--', 'java', '-jar', '/app/app.jar', '--spring.config.location=/app/application.yaml']
-
-  mongo:
-    image: mongo:latest
-    container_name: mongo-container
-    ports:
-      - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: testuser
-      MONGO_INITDB_ROOT_PASSWORD: almafa1234
-      MONGO_INITDB_DATABASE: emptrackdb
-    networks:
-      - employee-network
+#  nosql-emp-track-app:
+#    build:
+#      context: ../
+#      dockerfile: Dockerfile-mongo
+#    container_name: nosql-emp-track-app
+#    command: mvn clean install -T 2 -DskipTests
+#    working_dir: /app
+#    volumes:
+#      - ./application-mongo.yaml:/app/application.yaml
+#    ports:
+#      - "8081:8080"
+#    networks:
+#      - employee-network
+#    depends_on:
+#      - emp_track_db
+#    entrypoint: ['./wait-for-it.sh', '-t', '120', 'emp_track_db:3306', '--', 'java', '-jar', '/app/app.jar', '--spring.config.location=/app/application.yaml']
+#
+#  mongo:
+#    image: mongo:latest
+#    container_name: mongo-container
+#    ports:
+#      - "27017:27017"
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: testuser
+#      MONGO_INITDB_ROOT_PASSWORD: almafa1234
+#      MONGO_INITDB_DATABASE: emptrackdb
+#    networks:
+#      - employee-network
 
 networks:
   employee-network:

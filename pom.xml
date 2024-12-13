@@ -19,8 +19,8 @@
 
     <modules>
         <module>business-logic</module>
-        <module>persistence-wrapper</module>
-        <module>app-wrapper</module>
+        <module>adapters</module>
+        <module>apps</module>
     </modules>
 
     <properties>
@@ -107,37 +107,6 @@
         <pluginManagement>
 
             <plugins>
-
-                <!-- OpenAPI generator plugin -->
-                <plugin>
-                    <groupId>org.openapitools</groupId>
-                    <artifactId>openapi-generator-maven-plugin</artifactId>
-                    <version>${version.openapi.generator}</version>
-                    <executions>
-                        <execution>
-                            <phase>generate-sources</phase>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/employee-api_v1.0.0.yaml</inputSpec>
-                                <generatorName>spring</generatorName>
-                                <outputDir>${project.build.directory}/generated-sources/openapi</outputDir>
-                                <modelPackage>training.microservices.employees.openapi.model</modelPackage>
-                                <apiPackage>training.microservices.employees.openapi.controller</apiPackage>
-                                <invokerPackage>training.microservices.employees.openapi.invoker</invokerPackage>
-                                <generateApis>true</generateApis>
-                                <configOptions>
-                                    <interfaceOnly>true
-                                    </interfaceOnly> <!-- Generates interfaces without implementations -->
-                                    <useSpringBoot3>true</useSpringBoot3> <!-- Use Spring Boot 3 -->
-                                    <useJakartaEE>true</useJakartaEE>
-                                    <interfaceOnly>true</interfaceOnly>
-                                </configOptions>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
 
                 <!-- Maven compiler plugin -->
                 <plugin>

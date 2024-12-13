@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://emptrack.microservices.training.com/employees"
+            xmlns="http://emptrack.microservices.training.com/employees"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+
+    <!-- EmployeeApiDto -->
+    <xsd:complexType name="EmployeeApiDto">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:long"/>
+            <xsd:element name="surname" type="xsd:string"/>
+            <xsd:element name="lastname" type="xsd:string"/>
+            <xsd:element name="lastname2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="dateOfBirth" type="xsd:date"/>
+            <xsd:element name="devices" type="DeviceApiDto" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- DeviceApiDto -->
+    <xsd:complexType name="DeviceApiDto">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:long"/>
+            <xsd:element name="employeeId" type="xsd:long"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="details" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ProblemDetail -->
+    <xsd:complexType name="ProblemDetail">
+        <xsd:sequence>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:element name="title" type="xsd:string"/>
+            <xsd:element name="status" type="xsd:int"/>
+            <xsd:element name="detail" type="xsd:string"/>
+            <xsd:element name="instance" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- ListEmployeesResponse -->
+    <xsd:complexType name="ListEmployeesResponse">
+        <xsd:sequence>
+            <xsd:element name="employees" type="EmployeeApiDto" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- CreateEmployeeRequest -->
+    <xsd:complexType name="CreateEmployeeRequest">
+        <xsd:sequence>
+            <xsd:element name="employee" type="EmployeeApiDto"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- CreateEmployeeResponse -->
+    <xsd:complexType name="CreateEmployeeResponse">
+        <xsd:sequence>
+            <xsd:element name="employee" type="EmployeeApiDto"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- GetEmployeeRequest -->
+    <xsd:complexType name="GetEmployeeRequest">
+        <xsd:sequence>
+            <xsd:element name="employeeId" type="xsd:long"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- GetEmployeeResponse -->
+    <xsd:complexType name="GetEmployeeResponse">
+        <xsd:sequence>
+            <xsd:element name="employee" type="EmployeeApiDto"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- UpdateEmployeeRequest -->
+    <xsd:complexType name="UpdateEmployeeRequest">
+        <xsd:sequence>
+            <xsd:element name="employeeId" type="xsd:long"/>
+            <xsd:element name="employee" type="EmployeeApiDto"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- UpdateEmployeeResponse -->
+    <xsd:complexType name="UpdateEmployeeResponse">
+        <xsd:sequence>
+            <xsd:element name="employee" type="EmployeeApiDto"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- DeleteEmployeeRequest -->
+    <xsd:complexType name="DeleteEmployeeRequest">
+        <xsd:sequence>
+            <xsd:element name="employeeId" type="xsd:long"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- DeleteEmployeeResponse -->
+    <xsd:complexType name="DeleteEmployeeResponse">
+        <xsd:sequence/>
+    </xsd:complexType>
+
+    <!-- Root elements for operations -->
+    <xsd:element name="ListEmployeesResponse" type="ListEmployeesResponse"/>
+    <xsd:element name="CreateEmployeeRequest" type="CreateEmployeeRequest"/>
+    <xsd:element name="CreateEmployeeResponse" type="CreateEmployeeResponse"/>
+    <xsd:element name="GetEmployeeRequest" type="GetEmployeeRequest"/>
+    <xsd:element name="GetEmployeeResponse" type="GetEmployeeResponse"/>
+    <xsd:element name="UpdateEmployeeRequest" type="UpdateEmployeeRequest"/>
+    <xsd:element name="UpdateEmployeeResponse" type="UpdateEmployeeResponse"/>
+    <xsd:element name="DeleteEmployeeRequest" type="DeleteEmployeeRequest"/>
+    <xsd:element name="DeleteEmployeeResponse" type="DeleteEmployeeResponse"/>
+</xsd:schema>
